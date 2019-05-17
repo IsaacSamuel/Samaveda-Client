@@ -5,7 +5,7 @@ class Playback extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {recording: false};
+    this.state = {recording: false, record_start : null};
 
     this.record = this.record.bind(this);
 
@@ -32,8 +32,25 @@ class Playback extends React.Component {
   }
 
   record() {
-    this.setState(prevState => ({recording: !prevState.recording}));
     this.record_pos = this.props.position;
+
+    if (this.state.recording === false) {
+      this.setState({
+            recording: true,
+            record_start : this.millisToMinutesAndSeconds(this.record_pos), 
+          });
+    }
+
+    if (this.state.recording === true) {
+      this.setState({
+          recording: false,
+        });
+
+      let record_end = this.millisToMinutesAndSeconds(this.record_pos);
+
+      //Pass this up so a comment box can be created
+      this.props.recording_time(this.state.record_start, record_end);
+    }
   }
 
 

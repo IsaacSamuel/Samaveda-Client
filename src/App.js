@@ -14,10 +14,13 @@ class App extends React.Component {
       URI: null, //The unique identifier for the current song
       duration: null, //The duration of the current song
       position: null, //The position we're at in the playback of the current songs
+      record_start_time: null, //The timestamp of where a recording begins
+      record_end_time: null //The timestamp of where a recording ends
     }
 
     this.timer = null; //The pointer to the timer interval
     this.updateTime = this.updateTime.bind(this);
+    this.handle_record = this.handle_record.bind(this);
 
   }
 
@@ -41,7 +44,8 @@ class App extends React.Component {
   componentDidMount() {
     window.onSpotifyWebPlaybackSDKReady = () => {
 
-      const token = "BQCU2mhcE_4VKt4nzDodvpct9t2nJ2SmPu_D0eGlrTFTLftHM7Vr20cBU8Yn6-Y8Dn_OP9rPSWtqMWRxwT_41Q5gbNvGhkkWeVLogCv0bc-VEW14IFapOihXSBo9-YMg2lfitTUUZvsZwzn7qB9Ud2WFTijM05b9G1yic3McBClYFGiO1qRoXk6c";
+      //Need to eventually generate these tokens using backend API
+      const token = "BQDvTlZVuydjvHR2VgepriiruPiqwCh-UpNFiogjPmxlG0agosLyRkqL5BHcTxiZ7Dvn-c18DIChB2YBos_g-21lb6S9E8NhOWf9eY11p-8Avuq64sOHebX4cB4NNJBwtBbKfs6LlRGDF225MM-p-MqwYlvD9ops44eZ4FMOmuyNn3yijlk_CSV-";
       var player = new window.Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
@@ -84,6 +88,11 @@ class App extends React.Component {
     }
   }
 
+  handle_record(record_begin_time, record_stop_time) {
+    this.setState({record_start_time : record_begin_time, record_end_time: record_stop_time}  )
+    console.log("Recording began at: " + record_begin_time + " and ended at: " + record_stop_time)
+  }
+
 
   render() {
 
@@ -95,6 +104,7 @@ class App extends React.Component {
           duration = {this.state["duration"]}
           position = {this.state["position"]}
           paused = {this.state["paused"]}
+          recording_time = {this.handle_record} 
         />
       </div>
       );
