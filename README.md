@@ -4,7 +4,7 @@ Samaveda is a social web app that allows users to annotate and comment on songs 
 
 On the front end, Samaveda uses React to control playback. To run it in the development server, enter the React directory and run:
 
-###npm start
+### npm start
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
