@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import './static/css/App.css';
 import Playback from './Playback';
 
 
@@ -99,13 +99,18 @@ class App extends React.Component {
       return (
         <div>
           <script src = "https://sdk.scdn.co/spotify-player.js"></script>
-        <h1>Spotify Web Playback SDK Test Thingy</h1>
-        < Playback
-          duration = {this.state["duration"]}
-          position = {this.state["position"]}
-          paused = {this.state["paused"]}
-          recording_time = {this.handle_record} 
-        />
+          <div id="view_container">
+            <h1>Spotify Web Playback SDK Test Thingy</h1>
+
+             <div id = "playback_container">
+                < Playback
+                  duration = {this.state["duration"]}
+                  position = {this.state["position"]}
+                  paused = {this.state["paused"]}
+                  recording_time = {this.handle_record} 
+                />
+              </div>
+          </div>
       </div>
       );
   }

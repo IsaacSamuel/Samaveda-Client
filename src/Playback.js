@@ -1,4 +1,6 @@
 import React from 'react';
+import './static/css/Playback.css';
+
 
 
 class Playback extends React.Component {
@@ -63,27 +65,27 @@ class Playback extends React.Component {
 
   render() {
     return (
-      <div id="playback_controls">
-        <center>
-          <label id="present_time">{this.millisToMinutesAndSeconds(this.props.position)}</label>
+        <div id = "playback_controls">
+          <center>
+            <label id="present_time">{this.millisToMinutesAndSeconds(this.props.position)}</label>
 
-          <i id="previous" className="material-icons" onClick={() => this.prevTrack() }>fast_rewind</i>
+            <i id="previous" className="material-icons" onClick={() => this.prevTrack() }>fast_rewind</i>
 
-          <i id="toggle" className="material-icons" onClick={() => this.toggle() }>{this.props.paused ? "play_circle_filled" : "pause_circle_filled"}</i>
+            <i id="toggle" className="material-icons" onClick={() => this.toggle() }>{this.props.paused ? "play_circle_filled" : "pause_circle_filled"}</i>
 
-          <i id="record" className="material-icons" onClick={() => this.record()}>fiber_manual_record</i>
+            <i id="record" className="material-icons" onClick={() => this.record()}>fiber_manual_record</i>
 
-          <i id="next" className="material-icons" onClick={() => this.nextTrack() }>fast_forward</i>
+            <i id="next" className="material-icons" onClick={() => this.nextTrack() }>fast_forward</i>
 
-          <label id="track_duration">{this.millisToMinutesAndSeconds(this.props.duration)}</label>
-        </center>
+            <label id="track_duration">{this.millisToMinutesAndSeconds(this.props.duration)}</label>
+          </center>
 
-        < ProgressBar
-          duration = {this.props.duration}
-          position = {this.props.position}
-          recording = {this.state.recording}
-          record_pos = {this.record_pos}
-        />
+          < ProgressBar
+            duration = {this.props.duration}
+            position = {this.props.position}
+            recording = {this.state.recording}
+            record_pos = {this.record_pos}
+          />
 
       </div>
     );

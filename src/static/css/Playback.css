@@ -1,7 +1,21 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+
+
+#playback_controls {
+	padding: 20px 50px 50px 20px;
+	float: bottom;
+	background-color: green;
+	width: 500px;
+	display: inline-block;
+	text-align: center;
+	position: absolute;
+	bottom: 20%;
+	border-radius: 20px;
+
+	/*center element */
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
 }
 
 
@@ -38,6 +52,8 @@ body {
 #progress_bar:hover #progress_circle {
 	display:block;
 }
+
+
 
 #blocky {
 	position:absolute;
@@ -76,10 +92,6 @@ body {
 }
 
 
-#playback_controls {
-	width: 500px;
-}
-
 i {
 	opacity: .65;
 }
@@ -87,6 +99,8 @@ i {
 i:hover {
 	opacity: .95;
 }
+
+
 
 
 
