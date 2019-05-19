@@ -45,7 +45,7 @@ class App extends React.Component {
     window.onSpotifyWebPlaybackSDKReady = () => {
 
       //Need to eventually generate these tokens using backend API
-      const token = "BQDvTlZVuydjvHR2VgepriiruPiqwCh-UpNFiogjPmxlG0agosLyRkqL5BHcTxiZ7Dvn-c18DIChB2YBos_g-21lb6S9E8NhOWf9eY11p-8Avuq64sOHebX4cB4NNJBwtBbKfs6LlRGDF225MM-p-MqwYlvD9ops44eZ4FMOmuyNn3yijlk_CSV-";
+      const token = process.env.REACT_APP_SPOTIFY_SECRET_KEY; //Defined in root folder in the config file, .env.local
       var player = new window.Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
