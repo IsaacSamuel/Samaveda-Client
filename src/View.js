@@ -11,7 +11,7 @@ class View extends React.Component {
 			/* Five types of views--Song View 'song', 
 			Artist View 'artist', Main View ('main'), 
 			Settings Page ('settings'), and logged out ('loggedOut') */
-			current_view : 'loggedOut'
+			current_view : 'song'
 		}
 
 		this.previous_pages = {};
@@ -72,7 +72,6 @@ class View extends React.Component {
  		else 
  			view = "Error display view";
  		}
-
  		return (
  			{view}
  		);
