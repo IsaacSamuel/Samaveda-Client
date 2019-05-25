@@ -1,5 +1,5 @@
 import React from 'react';
-import TimeIndicator from './TimeIndicator';
+import Comment from './Comment'
 import CommentHelper from './CommentHelper'
 
 

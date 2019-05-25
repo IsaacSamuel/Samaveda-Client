@@ -1,5 +1,8 @@
 import React from 'react';
 import CommentHelper from './CommentHelper'
+import VoteIndicator from './VoteIndicator'
+import PublicIndicator from './PublicIndicator'
+import TimeIndicator from './TimeIndicator'
 
 
 class Comment extends React.Component {
@@ -29,9 +32,9 @@ class Comment extends React.Component {
 	    this.votingDiv = this.votingDiv(this);
 	}
 
-	function setPublic(public_status) {
-		this.state.setState({
-			is_public : public_status
+	function setPublic() {
+		this.state.setState(prevState => {
+			is_public : !prevState.is_public
 		});
 	}
 

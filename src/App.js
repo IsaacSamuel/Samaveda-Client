@@ -1,6 +1,7 @@
 import React from 'react';
 import './static/css/App.css';
 import Playback from './Playback';
+import View from './View'
 
 
 
@@ -101,6 +102,8 @@ class App extends React.Component {
           <script src = "https://sdk.scdn.co/spotify-player.js"></script>
           <div id="view_container">
             <h1>Spotify Web Playback SDK Test Thingy</h1>
+
+            <View 
 
              <div id = "playback_container">
                 < Playback

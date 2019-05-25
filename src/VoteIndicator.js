@@ -1,3 +1,5 @@
+import React from 'react';
+
 class VoteIndicator extends React.Component {
 
 	constructor(props) {
@@ -8,7 +10,6 @@ class VoteIndicator extends React.Component {
 	    	score : this.props.score
 	    };
 
-	    this.setNewVote = this.setNewVote.bind(this);
 	}
 
 	upvote() {
