@@ -1,4 +1,6 @@
-class App extends React.Component {
+import React from 'react';
+
+class TimeIndicator extends React.Component {
 	/* A simple child component of a comment that has two functions:
 		1.) Display the start and end time that a comment is referring to for a particular song.
 		2.) If the comment belongs to the user, allow the user to double click on the component and enter a custom time
@@ -9,18 +11,19 @@ class App extends React.Component {
 	    super(props);
 
 	    this.state = {
-	    	editting : false,
+	    	editting : this.props.is_new_comment,
 	    	error : false
 	    };
 
-	    this.validateNewBeginTime = this.validateNewBeginTime.bind(this);
-	    this.validateNewEndTime = this.validateNewEndTime.bind(this);
+	    var begin_time = this.props.begin_time;
+	    var end_time = this.props.end_time
+
 	    this.setNewTime = this.setNewTime.bind(this);
 
 	}
 
 
-	function validateNewBeginTime(input){
+	static function validateNewBeginTime(input){
 		/* Checks to make sure input is:
 			1.) A valid time in the format XX:XX where X are numerals
 			2.) If end time exists, checks to make sure it is less than it (comes before it in time)
@@ -33,7 +36,7 @@ class App extends React.Component {
 
 
 
-	function validateNewEndTime(input){
+	static function validateNewEndTime(input){
 		/* Checks to make sure input is:
 			1.) A valid time in the format XX:XX where X are numerals
 			2.) Checks to makes sure the song is within the duration of the song (e.g. you cannot comment
@@ -45,11 +48,11 @@ class App extends React.Component {
 
 	function setNewTime(new_begin_time, new_end_time) {
 		//Validates the new times and passes them up to the parent component. 
-		if (setNewBeginTime(new_begin_time) this.validateNewEndTime(new_end_time)) {
+		if (TimeIndicator.setNewBeginTime(new_begin_time) && TimeIndicator.validateNewEndTime(new_end_time)) {
 			this.props.setTime(new_begin_time, new_end_time);
 
 			this.state.setState({
-				error : true
+				error : false
 			});
 		}
 		else {
@@ -60,9 +63,13 @@ class App extends React.Component {
 		}
 	}
 
-	//Needs some sort of detection mechanism when user changes form--enter key or submit button? Or just bind it.
+	/*Needs some sort of detection mechanism when user changes form--enter key, unfocus, or submit button? 
+		Or just bind it, but then error will display on the first character the user enters.*/
 
-	//Needs double click detection mechanism that changes state editing = true
+	function OnDoubleClick(event) {
+		//User wants to edit the time
+
+	}
 
 
 	render () {
@@ -78,8 +85,8 @@ class App extends React.Component {
 			return (
 				<div class = "display_comment_time_form">
 					<span> 
-						<input name="comment_begin_time">{begin_time}></input> {/*Add ref to avoid detect collisions?}*/}
-						<input name="comment_end_time">{begin_time}></input>
+						<input type="text" name="comment_begin_time">{begin_time}></input> {/*Add ref to avoid detect collisions?}*/}
+						<input type="text" name="comment_end_time">{end_time}></input>
 					</span>
 				</div>
 			)

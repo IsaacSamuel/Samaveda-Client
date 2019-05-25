@@ -1,3 +1,7 @@
+import React from 'react';
+import TimeIndicator from './TimeIndicator';
+import CommentHelper from './CommentHelper'
+
 
 class SongView extends React.Component {
  {
@@ -22,15 +26,15 @@ class SongView extends React.Component {
 	}
 
 
-	function fetchPublicComments(song_uri) {
+	fetchPublicComments(song_uri) {
 		//Fetch and return the public comment data for this song, excluding the user's comments
 	}
 
-	function fetchUserComments(song_uri) {
+	fetchUserComments(song_uri) {
 		//Fetch and return the user's personal comments for this song--both public and private
 	}
 
-	function fetchComments(song_uri) {
+	fetchComments(song_uri) {
 		//Fetches user and public comments, stores in data structures, and sets state.comments_loaded to true (after async operations complete)
 		this.user_comments = this.fetchUserComments(song_uri);
 		this.public_comments = this.fetchPublicComments(song_uri);
@@ -46,7 +50,7 @@ class SongView extends React.Component {
 					<h2>{this.props.current_song_name}</h2>
 					<p><i>{this.props.current_song_artist_name}</i></p>
 					<h4>Write a comment</h4>
-					<CommentForm />
+					{CommentHelper.newCommentForm("", "")}
 					<h4>Your Comments</h4>
 						{/* For each of the user's comments on this song, generate a Comment component and pass it the comment json data as a parameter */} 
 						{this.user_comments.map( 

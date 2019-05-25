@@ -16,38 +16,37 @@ class View extends React.Component {
 
 		this.previous_pages = {};
 
-
 	}
 
- 	function goBack() {
+ 	goBack() {
  		//Go back to previous page
 
  		//If there is anything in this.previous_pages, pop from it, and go to that page
  	}
 
- 	function checkedIfLoggedOut() {
+ 	checkedIfLoggedOut() {
  		//Check if logged out, if not, go to main page
  	}
 
- 	function viewLoggedOutPage(song_uri) {
+ 	viewLoggedOutPage(song_uri) {
  		this.setState({'current_view' : 'loggedOut'})
  	}
 
- 	function viewSongPage(song_uri) {
+ 	viewSongPage(song_uri) {
  		//Change state (current_view) to 'song'
  		url = 'song/' + song_uri;
 
  		this.setState({'current_view' : url})
  	}
 
- 	function viewArtistPage(artist_uri) {
+ 	viewArtistPage(artist_uri) {
  		//Change state (current_view) to 'artist'
  		 url = 'song/' + artist_uri;
 
  		this.setState({'current_view' : url})
  	}
 
- 	function viewHomePage() {
+ 	viewHomePage() {
  		//Change state (current_view) to 'home'
 
  		this.setState({'current_view' : 'home'})

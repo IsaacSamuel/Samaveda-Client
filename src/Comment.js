@@ -1,4 +1,6 @@
 import React from 'react';
+import CommentHelper from './CommentHelper'
+
 
 class Comment extends React.Component {
  {
@@ -10,8 +12,7 @@ class Comment extends React.Component {
 	      end_time: this.props.comment.end_time,
 	      is_public: this.props.comment.is_public,
 	      score: this.props.comment.comment_score,
-	      upvoted: this.props.comment.upvoted
-	      downvoted: this.props.comment.downvoted
+	      vote: this.props.comment.upvote
 	      owner: this.props.comment.owner
 	    }
 
@@ -28,65 +29,65 @@ class Comment extends React.Component {
 	    this.votingDiv = this.votingDiv(this);
 	}
 
-	function setPublic() {
-		/* Change public status, send to server */
+	function setPublic(public_status) {
+		this.state.setState({
+			is_public : public_status
+		});
 	}
 
 	function setTime(new_begin_time, new_end_time) {
-		/* Change begin time, sends to server */
+		this.state.setState({
+			begin_time : new_begin_time,
+			end_time : new_end_time
+		});
 	}
 
 	function newComment(comment) {
 		/* Create new comment and add a pointer to it to the subcomments */
 	}
 
-	function upvote() {
-		/* Send upvote to server, return new score, set votes to new score */
+	function vote(user_vote) {
+		this.state.setState({
+			vote : user_vote
+		});
 	}
 
-	function downvote() {
-		/* Send downvote to server, return new score, set votes to new score */
-	}
 
-	function sendChange(field, value) {
-		/* Send a change to the server, return response */
+	function handleSubmit() {
+		//Do all the saving of our comment into json form, use helper to send to server
 
-		//Create POST request to /comment
-	}
+		let is_public = document.forms["new_comment_form"]["public"];
+		let comment_body = document.forms["new_comment_form"]["comment_body"];
 
-	function handleSubmit(event) {
-		//Do all the saving or comment generation
+		let comment_json = {}
+
+		comment_json = {
+			"begin_time" : this.state.begin_time,
+			"end_time" : this.state.end_time,
+			"is_public" : this.state.is_public
+			"comment_body" : this.state.comment_body,
+			"vote" : this.state.vote,
+			
+			"is_new" : false
+		}
+
+		CommentHelper.saveComment(comment_json)
+
 	}
 
 	function isUserOwner() {
 		/* If the user is the owner, return true */
+		return true
 	}
 
+	//change to const
 	function votingDiv() {
 		//voting div exists for public and private components, we encapsulte to avoid repitition
-
 		return (
 			<div class="votes">
 				<div class = "upvote"></div>
 					{this.votes}
 				<div class = "downvote"></div>
-			</div>
-		)
-	}
-
-	//How we ultimately want this to display--not a function we'll actually use
-	function toString() {
-		return (
-			<div class="comment">
-				<span>{this.begin} - {this.end}</span>
-				<div class={this.is_public ? "public" : "private"}></div>
-				<div class="votes">
-					<div class = "upvote"></div>
-						{this.votes}
-					<div class = "downvote"></div>
-				</div>
-				<div class="comment_body">{this.body}</div>
-				<span class="user">Written by: {this.user}</span>
 			</div>
 		)
 	}
@@ -100,8 +101,8 @@ class Comment extends React.Component {
 	            		onSubmit={this.handleSubmit}>
 
 						< TimeIndicator 
-							beginTime = {this.begin}
-							endTime = {this.end}
+							begin_time = {this.begin}
+							end_time = {this.end}
 
 							setTime = {this.setTime}
 						/>
@@ -135,6 +136,9 @@ class Comment extends React.Component {
 					<div class = "comment_body">
 						{this.comment.body}
 					</div>
+
+					<span class="author">Written by: {this.user}</span>
+
 				</div>
 			});
 		}
