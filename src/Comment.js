@@ -42,11 +42,8 @@ class Comment extends React.Component {
 		});
 	}
 
-	function newComment(comment) {
-		/* Create new comment and add a pointer to it to the subcomments */
-	}
 
-	function vote(user_vote) {
+	function setVote(user_vote) {
 		this.state.setState({
 			vote : user_vote
 		});
@@ -80,18 +77,6 @@ class Comment extends React.Component {
 		return true
 	}
 
-	//change to const
-	function votingDiv() {
-		//voting div exists for public and private components, we encapsulte to avoid repitition
-		return (
-			<div class="votes">
-				<div class = "upvote"></div>
-					{this.votes}
-				<div class = "downvote"></div>
-			</div>
-		)
-	}
-
 	function render() {
 		//If comment is owned by user, we need to generate TimeIndicator and PublicIndicator component and allow user to edit body
 		if (this.isUserOwner) {
@@ -101,16 +86,22 @@ class Comment extends React.Component {
 	            		onSubmit={this.handleSubmit}>
 
 						< TimeIndicator 
-							begin_time = {this.begin}
-							end_time = {this.end}
+							begin_time = {this.state.begin}
+							end_time = {this.state.end}
 
 							setTime = {this.setTime}
 						/>
 						< PublicIndicator
-							isPublic = {this.is_public}
+							isPublic = {this.state.is_public}
+							setPublic = {this.setPublic}
 						/>
 
-						{this.votingDiv()}
+						< VoteIndicator
+							vote = {this.state.vote}
+							score = {this.state.score}
+
+							setVote = {this.setVote}
+						/>
 
 					{/* For now just using textarea, but should replace with a component that is not double click */}
 						<textarea id="body"
