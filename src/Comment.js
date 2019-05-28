@@ -86,8 +86,8 @@ class Comment extends React.Component {
 	            		onSubmit={this.handleSubmit}>
 
 						< TimeIndicator 
-							begin_time = {this.state.begin}
-							end_time = {this.state.end}
+							begin_time = {this.state.begin_time}
+							end_time = {this.state.end_time}
 
 							setTime = {this.setTime}
 						/>
@@ -117,7 +117,7 @@ class Comment extends React.Component {
 			return ( 
 				<div class = 'static_comment'> 
 					<div class="static_comment_time">
-						<span>{this.props.begin_time} - {this.props.end_time}</span>
+						<span>{this.state.begin_time} - {this.state.end_time}</span>
 					</div>
 
 					{this.votingDiv()}
