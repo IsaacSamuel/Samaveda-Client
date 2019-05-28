@@ -1,8 +1,7 @@
 #playback_container {
-	background-color: blue;
 	width: 70%;
 	height: 200px;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 }
 
