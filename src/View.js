@@ -3,7 +3,6 @@ import SongView from './SongView'
 
 
 class View extends React.Component {
- {
 
  	constructor(props) {
 		super(props);
@@ -12,7 +11,7 @@ class View extends React.Component {
 			/* Five types of views--Song View 'song', 
 			Artist View 'artist', Main View ('main'), 
 			Settings Page ('settings'), and logged out ('loggedOut') */
-			current_view : 'song'
+			current_view : this.props.current_view
 		}
 
 		this.previous_pages = {};
@@ -35,14 +34,14 @@ class View extends React.Component {
 
  	viewSongPage(song_uri) {
  		//Change state (current_view) to 'song'
- 		url = 'song/' + song_uri;
+ 		let url = 'song/' + song_uri;
 
  		this.setState({'current_view' : url})
  	}
 
  	viewArtistPage(artist_uri) {
  		//Change state (current_view) to 'artist'
- 		 url = 'song/' + artist_uri;
+ 		let url = 'song/' + artist_uri;
 
  		this.setState({'current_view' : url})
  	}
@@ -54,29 +53,34 @@ class View extends React.Component {
  	}
 
  	render() {
+ 		let view;
+ 		//Decide which type of view to display based on current state
  		if (this.state.current_view === 'main') {
- 			view = < Main  />;
+ 			//view = < MainView  />;
  		}
  		if (this.state.current_view === 'settings') {
- 			view = < Settings  />;
+ 			//view = < SettingsView  />;
  		}
  		if (this.state.current_view === 'loggedOut') {
- 			view = < LoggedOut  />;
+ 			//view = < LoggedOut  />;
  		}
  		else if (this.state.current_view.includes('song')) {
- 			view = < Song />;
+ 			view = < SongView 
+ 						current_song_name = "River"
+ 						current_song_artist_name = 'Bishop Briggs'
+ 					/>;
  		}
  		else if (this.state.current_view.includes('artist')) {
- 			view = < Artist />;
+ 			//view = < ArtistView />;
  		}
- 		else 
+ 		else {
  			view = "Error display view";
  		}
- 		return (
- 			{view}
- 		);
+
+
+ 		return view;
  	}
 
-
-
 }
+
+export default View;

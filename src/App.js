@@ -104,6 +104,8 @@ class App extends React.Component {
             <h1>Spotify Web Playback SDK Test Thingy</h1>
 
             <View 
+              current_view = "song"
+            />
 
              <div id = "playback_container">
                 < Playback
@@ -118,9 +120,6 @@ class App extends React.Component {
       );
   }
 }
-
-
-
 
 
 export default App;

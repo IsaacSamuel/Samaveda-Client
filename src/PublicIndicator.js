@@ -10,7 +10,7 @@ class PublicIndicator extends React.Component {
 	    	is_public : this.props.is_public
 	    };
 
-	    this.setPublic = this.setPublic.bind(this);
+	    this.switchPublic = this.switchPublic.bind(this);
 	}
 
 	switchPublic() {
@@ -21,16 +21,12 @@ class PublicIndicator extends React.Component {
 
 
 	render() {
-		upvoted = this.state.voted == 1
-		downvoted = this.state.voted == -1
-
 		return (
-			<div class="votes">
-				<div class = {"upvote " + (upvoted ? "upvoted" : "")} onclick={this.upvote()}></div>
-					{this.votes}
-				<div class = {"downvote " + (downvoted ? "downvoted" : "")} onclick={this.downvote()}></div>
+			<div class={"public " + (this.state.is_public ? "active" : "inactive") }>
 			</div>
 		)
 	}
 
 }
+
+export default PublicIndicator;

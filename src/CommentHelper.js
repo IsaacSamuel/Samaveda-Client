@@ -12,8 +12,8 @@ class CommentHelper {
 			<div class="new_comment">
 				<form id="new_comment_form" onsubmit={CommentHelper.onSubmit()} >
 					<span class="time">
-						<input type="text" name="comment_begin_time">{begin_time ? begin_time : ""}></input> {/*Add ref to avoid detect collisions?}*/}
-						<input type="text" name="comment_end_time">{end_time ? end_time : ""}></input>
+						<input type="text" name="comment_begin_time" value={start_time ? start_time : ""} /> {/*Add ref to avoid detect collisions?}*/}
+						<input type="text" name="comment_end_time" value={end_time ? end_time : ""}/>
 					</span>
 					<div class="is_public">
 						<input type="hidden" name="public" value="true" />
@@ -31,7 +31,7 @@ class CommentHelper {
 		//Add whatever auth is required
 	}
 
-	static onSubmit() {
+	static onSubmit() {/*
 		let begin_time = document.forms["new_comment_form"]["comment_begin_time"];
 		let end_time = document.forms["new_comment_form"]["comment_begin_time"];
 
@@ -41,21 +41,23 @@ class CommentHelper {
 		let comment_json = {}
 
 		if (TimeIndicator.setNewBeginTime(begin_time) && TimeIndicator.validateNewEndTime(end_time)) {
-			comment_json = {
+			let comment_json = {
 				begin_time : begin_time,
 				end_time : end_time,
-				is_public : is_public
+				is_public : is_public,
 				comment_body : comment_body,
 				
 				is_new : true
 			}
 
-			saveComment(comment_json)
+			CommentHelper.saveComment(comment_json)
 		}
 
 		else {
 			console.log("Error with time input.")
-		}
+		}*/
 	}
 
 }
+
+export default CommentHelper;

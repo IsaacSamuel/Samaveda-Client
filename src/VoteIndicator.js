@@ -10,14 +10,17 @@ class VoteIndicator extends React.Component {
 	    	score : this.props.score
 	    };
 
+	    this.upvote = this.upvote.bind(this);
+	    this.downvote = this.downvote.bind(this);
+
 	}
 
 	upvote() {
 		if (this.state.vote != 1) {
-			this.state.setState({
-				vote : 1
-				score : score + 1
-			});
+			this.setState(prevState => ({
+				vote : 1,
+				score : (prevState.score + 1)
+			}));
 
 			this.props.setVote(this.state.vote);
 		}
@@ -25,10 +28,10 @@ class VoteIndicator extends React.Component {
 
 	downvote() {
 		if (this.state.vote != -1) {
-			this.state.setState({
-				vote : -1
-				score : score -1 1
-			});
+			this.setState(prevState => ({
+				vote : -1,
+				score : (prevState.score - 1)
+			}));
 
 			this.props.setVote(this.state.vote);
 		}
@@ -36,16 +39,18 @@ class VoteIndicator extends React.Component {
 
 
 	render() {
-		upvoted = this.state.voted == 1
-		downvoted = this.state.voted == -1
+		let upvoted = this.state.voted == 1
+		let downvoted = this.state.voted == -1
 
 		return (
 			<div class="votes">
-				<div class = {"upvote " + (upvoted ? "upvoted" : "")} onclick={this.upvote()}></div>
+				<div class = {"upvote " + (upvoted ? "upvoted" : "")} onClick={this.upvote}></div>
 					{this.votes}
-				<div class = {"downvote " + (downvoted ? "downvoted" : "")} onclick={this.downvote()}></div>
+				<div class = {"downvote " + (downvoted ? "downvoted" : "")} onClick={this.downvote}></div>
 			</div>
 		)
 	}
 
 }
+
+export default VoteIndicator;

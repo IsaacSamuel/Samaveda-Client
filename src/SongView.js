@@ -4,13 +4,12 @@ import CommentHelper from './CommentHelper'
 
 
 class SongView extends React.Component {
- {
 
  	constructor(props) {
 		super(props);
 
 		this.state = {
-			comments_loaded : false
+			comments_loaded : true
 		}
 
 		this.fetchPublicComments = this.fetchPublicComments.bind(this);
@@ -28,10 +27,44 @@ class SongView extends React.Component {
 
 	fetchPublicComments(song_uri) {
 		//Fetch and return the public comment data for this song, excluding the user's comments
+		let comments = 
+			[
+				{
+					song_name : "River",
+					artist_name : "Bishop Briggs",
+					begin_time : ":00",
+					end_time : "2:43",
+					comment_body : "This song rules! Best of Bishop Briggs!!",
+					comment_score : '2',
+					is_public : true,
+					owner : "Current User",
+					song_uri : "2309039103200832"
+				}
+			]
+
+		return comments
 	}
 
 	fetchUserComments(song_uri) {
 		//Fetch and return the user's personal comments for this song--both public and private
+
+		//For now, just subbing in static comments for testing
+		let comments = 
+			[
+				{
+					song_name : "River",
+					artist_name : "Bishop Briggs",
+					begin_time : ":43",
+					end_time : "1:03",
+					comment_body : "Notice the use of resolute dissonance here (at the start of the downbeat.)",
+					comment_score : '4',
+					is_public : true,
+					owner : "Current User",
+					song_uri : "2309039103200832"
+				}
+			]
+
+		return comments
 	}
 
 	fetchComments(song_uri) {
@@ -59,7 +92,7 @@ class SongView extends React.Component {
 									<div class = "user_comment">
 										< Comment 
 											comment_data = {comment} 
-										/>;
+										/>
 									</div>
 								)
 							}
@@ -72,21 +105,23 @@ class SongView extends React.Component {
 									<div class = "user_comment">
 										< Comment 
 											comment_data = {comment} 
-										/>;
+										/>
 									</div>
 								)
 							}
-						)};
+						)}
 				</div>
 			)
 		}
 		else {
 			return (
 				<div id="currently_loading"> 
-					<img src="../static/images/current_loading.gif" alt="Currently loading details for song">
+					<img src="../static/images/current_loading.gif" alt="Currently loading details for song" />
 				</div>
 			)
 		}
 	}
 
  }
+
+ export default SongView;
