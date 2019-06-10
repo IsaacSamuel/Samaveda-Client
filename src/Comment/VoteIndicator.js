@@ -16,7 +16,7 @@ class VoteIndicator extends React.Component {
 	}
 
 	upvote() {
-		if (this.state.vote != 1) {
+		if (this.state.vote !== 1) {
 			this.setState(prevState => ({
 				vote : 1,
 				score : (prevState.score + 1)
@@ -27,7 +27,7 @@ class VoteIndicator extends React.Component {
 	}
 
 	downvote() {
-		if (this.state.vote != -1) {
+		if (this.state.vote !== -1) {
 			this.setState(prevState => ({
 				vote : -1,
 				score : (prevState.score - 1)
@@ -39,8 +39,8 @@ class VoteIndicator extends React.Component {
 
 
 	render() {
-		let upvoted = this.state.voted == 1
-		let downvoted = this.state.voted == -1
+		let upvoted = this.state.voted === 1
+		let downvoted = this.state.voted === -1
 
 		return (
 			<div class="votes">

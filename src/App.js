@@ -1,6 +1,6 @@
 import React from 'react';
 import './static/css/App.css';
-import Playback from './Playback';
+import Playback from './Playback/Playback';
 import View from './View'
 
 
@@ -29,7 +29,7 @@ class App extends React.Component {
     let round = 0;
 
     if (!this.state["paused"] && this.state["position"] != null) {
-      if (round % 7 != 0) {
+      if (round % 7 !== 0) {
         round += 1;
         this.setState({position: (this.state["position"] + 500)});
       }

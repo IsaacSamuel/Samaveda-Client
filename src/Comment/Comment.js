@@ -129,7 +129,7 @@ class Comment extends React.Component {
 					<span class="author">Written by: {this.user}</span>
 
 				</div>
-			);
+			)
 		}
 	}
 }

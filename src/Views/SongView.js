@@ -1,6 +1,7 @@
 import React from 'react';
-import Comment from './Comment'
-import CommentHelper from './CommentHelper'
+import Comment from '../Comment/Comment'
+import CommentHelper from '../Comment/CommentHelper'
+
 
 
 class SongView extends React.Component {
@@ -96,7 +97,7 @@ class SongView extends React.Component {
 									</div>
 								)
 							}
-						)};
+						)}
 					<h4>Public comments on this song</h4>
 						{/* For each of the public comments on this song, generate a Comment component and pass it the comment's json data as a parameter */} 
 						{this.public_comments.map( 

@@ -1,6 +1,4 @@
 import React from 'react';
-import TimeIndicator from './TimeIndicator';
-
 
 //A static class that generates a form for a new comment and handles form submission
 

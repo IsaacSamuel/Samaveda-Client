@@ -74,7 +74,7 @@ class TimeIndicator extends React.Component {
 
 	render () {
 
-		if (this.state.editting == false) {
+		if (this.state.editting === false) {
 			return (
 				<div class = "display_comment_time">
 					<span>{this.props.begin_time} - {this.props.end_time}</span>
