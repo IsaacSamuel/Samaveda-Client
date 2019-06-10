@@ -1,5 +1,9 @@
 import React from 'react';
+
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 import SongView from './SongView'
+
 
 
 class View extends React.Component {
@@ -53,34 +57,54 @@ class View extends React.Component {
  	}
 
  	render() {
- 		let view;
- 		//Decide which type of view to display based on current state
- 		if (this.state.current_view === 'main') {
- 			//view = < MainView  />;
- 		}
- 		if (this.state.current_view === 'settings') {
- 			//view = < SettingsView  />;
- 		}
- 		if (this.state.current_view === 'loggedOut') {
- 			//view = < LoggedOut  />;
- 		}
- 		else if (this.state.current_view.includes('song')) {
- 			view = < SongView 
- 						current_song_name = "River"
- 						current_song_artist_name = 'Bishop Briggs'
- 					/>;
- 		}
- 		else if (this.state.current_view.includes('artist')) {
- 			//view = < ArtistView />;
- 		}
- 		else {
- 			view = "Error display view";
- 		}
+	 	return (
+	 		<Router>
+		 		<Switch>
 
+		 			<Route path="/song" 
+		 				render={
+		 					props=>
+		 						<SongView
+		 					 		current_song_name = "River"
+		 					 		current_song_artist_name = 'Bishop Briggs'
+		 						/>
+		 				} 
+		 			/>	
 
- 		return view;
- 	}
+		 		</Switch>
+	 		</Router>
+	 	)
+	}
 
 }
+
+
+/*
+
+	 			<Route exact path="/" component={MainView} />
+	 			<Route path="/settings" component={SettingsView} />
+	 			<Route path="/loggedOut" component={LoggedOutView} />
+	 			
+	 			<Route path="/song" 
+	 				render={
+	 					props=>
+	 						<SongView
+	 					 		current_song_name = "River"
+	 					 		current_song_artist_name = 'Bishop Briggs'
+	 						/>
+	 				} 
+	 			/>
+	 
+	 			<Route path="/artist" component={ArtistView} />
+	 			<Route path="/loggedOut" component={LoggedOutView} />
+
+	 			<Route render={
+	 					props=>
+	 						<ErrorView
+	 					 		errorType="404"
+	 						/>
+	 			}  />
+
+*/
 
 export default View;
