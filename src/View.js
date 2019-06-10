@@ -13,15 +13,7 @@ class View extends React.Component {
  	constructor(props) {
 		super(props);
 
-		this.state = {
-			/* Five types of views--Song View 'song', 
-			Artist View 'artist', Main View ('main'), 
-			Settings Page ('settings'), and logged out ('loggedOut') */
-			current_view : this.props.current_view
-		}
-
 		this.previous_pages = {};
-
 	}
 
  	goBack() {
@@ -59,11 +51,17 @@ class View extends React.Component {
  	}
 
  	render() {
+
 	 	return (
 	 		<Router>
 		 		<Switch>
-
-		 			<Route exact path="/" component={BaseView} />
+		 			<Route exact path="/" render={
+		 				(props) => 
+		 					<BaseView
+		 						logged_in = {this.props.logged_in}
+		 					/>
+		 				} 
+		 			/>
 
 		 			<Route path="/song" 
 		 				render={
@@ -91,9 +89,7 @@ class View extends React.Component {
 /*
 
 	 			<Route exact path="/" component={MainView} />
-	 			<Route path="/settings" component={SettingsView} />
-	 			<Route path="/loggedOut" component={LoggedOutView} />
-	 			
+	 			<Route path="/settings" component={SettingsView} />	 			
 	 
 	 			<Route path="/artist" component={ArtistView} />
 

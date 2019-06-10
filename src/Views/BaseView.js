@@ -4,8 +4,8 @@ import React from 'react';
     and render a view accordingly. */
 
 function BaseView (props) {
-	if (props.loggedIn) {
-		return loggedOutView()
+	if (props.logged_in === true) {
+		return loggedInView()
 	}
 	else {
 		return loggedOutView()

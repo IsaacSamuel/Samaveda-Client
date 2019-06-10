@@ -16,12 +16,15 @@ class App extends React.Component {
       duration: null, //The duration of the current song
       position: null, //The position we're at in the playback of the current songs
       record_start_time: null, //The timestamp of where a recording begins
-      record_end_time: null //The timestamp of where a recording ends
+      record_end_time: null, //The timestamp of where a recording ends
+      logged_in: true
     }
 
     this.timer = null; //The pointer to the timer interval
     this.updateTime = this.updateTime.bind(this);
     this.handle_record = this.handle_record.bind(this);
+    this.insertPlaybackComponentIfLoggedIn = this.insertPlaybackComponentIfLoggedIn.bind(this);
+
 
   }
 
@@ -95,6 +98,24 @@ class App extends React.Component {
   }
 
 
+  //We only want the playback compompent to render if the user is actually logged in.
+  insertPlaybackComponentIfLoggedIn() {
+    if (this.state.logged_in) {
+      return (
+          <div id = "playback_container">
+                  < Playback
+                    duration = {this.state["duration"]}
+                    position = {this.state["position"]}
+                    paused = {this.state["paused"]}
+                    recording_time = {this.handle_record} 
+                  />
+          </div>
+        )
+    }
+    return null
+  }
+
+
   render() {
 
       return (
@@ -103,19 +124,12 @@ class App extends React.Component {
           <div id="view_container">
             <h1>Spotify Web Playback SDK Test Thingy</h1>
 
-            <View 
-              current_view = "song"
-            />
 
-             <div id = "playback_container">
-                < Playback
-                  duration = {this.state["duration"]}
-                  position = {this.state["position"]}
-                  paused = {this.state["paused"]}
-                  recording_time = {this.handle_record} 
-                />
-              </div>
+            <View
+              logged_in = {this.state.logged_in}
+            />
           </div>
+          {this.insertPlaybackComponentIfLoggedIn()}
       </div>
       );
   }
