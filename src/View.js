@@ -3,6 +3,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import SongView from './Views/SongView'
+import ErrorView from './Views/ErrorView'
+import BaseView from './Views/BaseView'
 
 
 
@@ -61,6 +63,8 @@ class View extends React.Component {
 	 		<Router>
 		 		<Switch>
 
+		 			<Route exact path="/" component={BaseView} />
+
 		 			<Route path="/song" 
 		 				render={
 		 					props=>
@@ -71,13 +75,18 @@ class View extends React.Component {
 		 				} 
 		 			/>	
 
+		 			<Route render={
+	 					props=>
+	 						<ErrorView
+	 					 		errorType="404"
+	 						/>
+	 				}  />
+
 		 		</Switch>
 	 		</Router>
 	 	)
 	}
-
 }
-
 
 /*
 
@@ -85,25 +94,8 @@ class View extends React.Component {
 	 			<Route path="/settings" component={SettingsView} />
 	 			<Route path="/loggedOut" component={LoggedOutView} />
 	 			
-	 			<Route path="/song" 
-	 				render={
-	 					props=>
-	 						<SongView
-	 					 		current_song_name = "River"
-	 					 		current_song_artist_name = 'Bishop Briggs'
-	 						/>
-	 				} 
-	 			/>
 	 
 	 			<Route path="/artist" component={ArtistView} />
-	 			<Route path="/loggedOut" component={LoggedOutView} />
-
-	 			<Route render={
-	 					props=>
-	 						<ErrorView
-	 					 		errorType="404"
-	 						/>
-	 			}  />
 
 */
 
