@@ -2,6 +2,7 @@ import React from 'react';
 import './static/css/App.css';
 import Playback from './Playback/Playback';
 import View from './View'
+import Login from './Login'
 
 
 
@@ -17,7 +18,7 @@ class App extends React.Component {
       position: null, //The position we're at in the playback of the current songs
       record_start_time: null, //The timestamp of where a recording begins
       record_end_time: null, //The timestamp of where a recording ends
-      logged_in: true
+      logged_in: false
     }
 
     this.timer = null; //The pointer to the timer interval
@@ -123,7 +124,7 @@ class App extends React.Component {
           <script src = "https://sdk.scdn.co/spotify-player.js"></script>
           <div id="view_container">
             <h1>Spotify Web Playback SDK Test Thingy</h1>
-
+            {this.state.logged_in ? null : <button OnClick={Login}>Log In</button> }
 
             <View
               logged_in = {this.state.logged_in}
